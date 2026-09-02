@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>关于小娅 · 小娅认知框架</title>
+<meta name="description" content="关于小娅：不提供标准答案，只把现实经历提炼成可复用的思考工具。">
+<script>
+/* 主题提前应用，避免刷新闪白 */
+(function(){ try{ var t = localStorage.getItem('xya.theme.v1'); if(t==='dark'||t==='light'){ document.documentElement.setAttribute('data-theme', t); } }catch(e){} })();
+</script>
+<style>
+:root{
+  --bg:#ffffff;
+  --ink:#2c2c2c;
+  --ink-soft:#4f545c;
+  --muted:#838b95;
+  --line:#e7e9ee;
+  --line-strong:#c3ccd8;
+  --line-soft:#f1f3f6;
+  --slate:#6b7c93;
+  --slate-deep:#54637a;
+  --card:#ffffff;
+  --panel:#f8fafc;
+  --hover:#f5f8fb;
+  --faint:#9aa2ac;
+  --hero-wash:#f4f6f9;
+  --ease:cubic-bezier(.4,.2,.2,1);
+}
+[data-theme="dark"]{
+  --bg:#15181d;
+  --ink:#e4e7ec;
+  --ink-soft:#c2c8d2;
+  --muted:#8d95a1;
+  --line:#2b3038;
+  --line-strong:#3a414b;
+  --line-soft:#242930;
+  --slate:#93a7c1;
+  --slate-deep:#adbfd7;
+  --card:#1b1f25;
+  --panel:#1f242b;
+  --hover:#22272e;
+  --faint:#757d8a;
+  --hero-wash:#191d23;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans SC",sans-serif;
+  font-size:16px;
+  line-height:1.78;
+  letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s var(--ease),color .3s var(--ease);
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 28px}
+main{padding:112px 0 40px}
+a{color:inherit}
+
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.24em;color:var(--muted)}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+p{margin:0}
+
+h1{font-size:clamp(30px,4.6vw,42px);font-weight:600;letter-spacing:.06em;margin:0;line-height:1.35}
+
+/* ---- 导航 ---- */
+.nav{display:flex;flex-wrap:wrap;align-items:center;gap:30px;margin-top:36px;padding-top:22px;border-top:1px solid var(--line)}
+.nav a{
+  font-size:14px;letter-spacing:.12em;color:var(--ink-soft);text-decoration:none;
+  padding-bottom:5px;border-bottom:1px solid transparent;
+  transition:color .3s var(--ease),border-color .3s var(--ease);
+}
+.nav a:hover{color:var(--slate-deep);border-color:var(--line-strong)}
+.nav .nav-theme{
+  margin-left:auto;font:inherit;font-size:12.5px;letter-spacing:.1em;cursor:pointer;
+  background:none;border:1px solid var(--line);border-radius:2px;color:var(--muted);
+  padding:6px 12px;transition:color .3s var(--ease),border-color .3s var(--ease);
+}
+.nav .nav-theme:hover{color:var(--ink);border-color:var(--line-strong)}
+
+/* ---- 折叠组件 ---- */
+.bio{margin-top:34px;border:1px solid var(--line);border-radius:3px;background:var(--card)}
+.bio summary{
+  list-style:none;cursor:pointer;display:block;padding:34px 32px 30px;
+  transition:background .3s var(--ease);
+}
+.bio summary::-webkit-details-marker{display:none}
+.bio summary:hover{background:var(--panel)}
+.bio-title{font-size:clamp(24px,3.4vw,32px);font-weight:600;letter-spacing:.06em}
+.abstract{margin-top:20px;max-width:560px}
+.abstract p{font-size:15.5px;line-height:2;color:var(--ink-soft)}
+.more{
+  display:inline-block;margin-top:22px;font-size:13.5px;letter-spacing:.14em;color:var(--slate-deep);
+  padding-bottom:5px;border-bottom:1px solid var(--line-strong);transition:color .3s var(--ease),border-color .3s var(--ease);
+}
+.bio summary:hover .more{color:var(--ink);border-color:var(--slate)}
+.bio[open] .abstract{display:none}
+.bio-body{padding:4px 32px 36px;animation:softIn .3s var(--ease)}
+.bio-body p{font-size:16px;line-height:2.15;letter-spacing:.02em;color:var(--ink);max-width:640px}
+.bio-body p + p{margin-top:22px}
+@keyframes softIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* ---- 返回按钮 ---- */
+.back{padding:44px 0 96px}
+.btn{
+  display:inline-block;font:inherit;font-size:14px;letter-spacing:.1em;cursor:pointer;
+  padding:12px 24px;border-radius:2px;border:1px solid var(--line-strong);background:var(--card);color:var(--ink);text-decoration:none;
+  transition:background .3s var(--ease),border-color .3s var(--ease);
+}
+.btn:hover{background:var(--hover);border-color:var(--slate)}
+
+/* ---- 页脚 ---- */
+footer{border-top:1px solid var(--line);padding:44px 0 72px;text-align:center}
+.foot-main{font-size:14.5px;letter-spacing:.05em;color:var(--ink-soft)}
+.foot-sub{margin-top:12px;font-size:12.5px;letter-spacing:.08em;color:var(--faint)}
+
+@media (max-width:560px){
+  .wrap{padding:0 20px}
+  main{padding:76px 0 28px}
+  .nav{gap:22px}
+  .nav .nav-theme{margin-left:0}
+  .bio summary{padding:28px 22px 24px}
+  .bio-body{padding:4px 22px 30px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important;animation:none !important}
+}
+</style>
+</head>
+<body>
+
+<main>
+  <div class="wrap">
+    <div class="eyebrow">关于 · About</div>
+
+    <nav class="nav">
+      <a href="index-ep23.html">认知框架</a>
+      <a href="ep24-relationship.html">最新一集 EP24</a>
+      <button type="button" class="nav-theme" id="navTheme">明暗模式</button>
+    </nav>
+
+    <details class="bio">
+      <summary>
+        <div class="bio-title">关于小娅</div>
+        <div class="abstract">
+          <p>小娅不提供标准答案。</p>
+          <p>她把现实经历提炼成可复用的思考工具，代表作是四层透镜思考框架。</p>
+          <p>产出思辨系列《100期认知起义》。</p>
+        </div>
+        <span class="more" id="moreLabel">阅读更多</span>
+      </summary>
+      <div class="bio-body">
+        <p>小娅不提供标准答案。</p>
+        <p>她做的事，是把现实经历拆成可以反复使用的思考工具——一段友情的结束、一次认知的错位、一个AI带来的冲击，都不是结论，而是镜片。透过它，你可以重新看自己原本看不见的东西。</p>
+        <p>她的核心方法是「四层透镜」：社会‑消费、时代‑职业、人与AI技术、自我三观溯源。一件事，用四层镜片同时过滤，分开什么是外界灌输给你的，什么才是你自己的判断。</p>
+        <p>她不评判对错，不制造焦虑，不灌鸡汤。她相信，每个人真正需要的不是一个现成答案，而是一套能自己提问、自己复盘的思考系统。</p>
+        <p>目前正在产出《100期认知起义》系列，每一集对应一个现实议题，每一集配套一份网页思辨材料。这个系列会一直更新，框架也会一直生长。</p>
+      </div>
+    </details>
+
+    <div class="back">
+      <a class="btn" href="index-ep23.html">返回认知框架主页</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-main">没有标准答案，仅作为自我思辨工具 © 小娅｜100期起义</p>
+    <p class="foot-sub">可放置在短视频简介链接访问</p>
+  </div>
+</footer>
+
+<script>
+/* 折叠文案切换 + 明暗模式（与主页共用 localStorage 键，跨页一致） */
+(function(){
+  var box = document.querySelector('.bio');
+  var label = document.getElementById('moreLabel');
+  if(box && label){
+    function sync(){ label.textContent = box.open ? '收起全文' : '阅读更多'; }
+    box.addEventListener('toggle', sync);
+    sync();
+  }
+
+  var KEY = 'xya.theme.v1';
+  var mem = {};
+  function get(){ try { return localStorage.getItem(KEY); } catch(e){ return mem[KEY] || null; } }
+  function set(v){ try { localStorage.setItem(KEY, v); } catch(e){ mem[KEY] = v; } }
+  function current(){ return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+  function apply(t){
+    document.documentElement.setAttribute('data-theme', t);
+    set(t);
+    var btn = document.getElementById('navTheme');
+    if(btn) btn.textContent = '明暗模式 · ' + (t === 'dark' ? '暗' : '浅');
+  }
+  apply(current());
+  var btn = document.getElementById('navTheme');
+  if(btn) btn.addEventListener('click', function(){ apply(current() === 'dark' ? 'light' : 'dark'); });
+})();
+</script>
+
+</body>
+</html>
